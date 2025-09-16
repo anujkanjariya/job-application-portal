@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #222;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    .list {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    h3 {
+      margin: 0 0 10px;
+      color: #0077cc;
+    }
+    p {
+      margin: 6px 0;
+      line-height: 1.5;
+    }
+    ul.requirements {
+      margin-top: 8px;
+      margin-left: 20px;
+      list-style: disc;
+    }
+    form {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    button {
+      background: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Available Jobs</h2>
+    <ul>
+      <% jobs.forEach(job => { %>
+        <li class="list">
+          <h3><%= job.title %> - <%= job.company %></h3>
+          <p><%= job.description %></p>
+          <p><b>Location:</b> <%= job.location %></p>
+          <p><b>Salary:</b> <%= job.salary %></p>
+          <p><b>Type:</b> <%= job.type %></p>
+
+          <p><b>Requirements:</b></p>
+          <ul class="requirements">
+            <% job.requirements.forEach(req => { %>
+              <li><%= req %></li>
+            <% }) %>
+          </ul>
+
+          <!-- Apply form -->
+          <form method="POST" action="/applications/<%= job._id %>" enctype="multipart/form-data">
+            <input type="file" name="resume" required>
+            <button type="submit">Apply</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+    <a href="/home" class="back-link">Back to Home</a>
+  </div>
+</body>
+
+</html>

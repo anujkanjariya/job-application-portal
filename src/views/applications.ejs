@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    li {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+    li p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: #555;
+    }
+    li b {
+      color: #000;
+    }
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .back-link {
+      margin-top: 30px;
+      text-align: center;
+      background: none;
+      color: #007bff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h2>My Applications</h2>
+    <ul>
+      <% apps.forEach(app=> { %>
+        <li style="margin-bottom:20px;">
+          <p><b>Job:</b>
+            <%= app.job.title %> at <%= app.job.company %>
+          </p>
+          <p><b>Date:</b>
+            <%= app.date.toDateString() %>
+          </p>
+          <p><b>Resume:</b> <a href="/uploads/<%= app.resume %>" target="_blank">Download</a></p>
+        </li>
+        <% }) %>
+    </ul>
+    <a href="/home" class="back-link" >Back to Home</a>
+
+  </div>
+</body>
+
+</html>
